@@ -21,41 +21,62 @@ private:
 	std::mt19937_64 		mt;
 
 public:
+	// Default constructor O(1)
 	AdvancedVector			();
+	
+	// Advanced constructors like std::vector, O(n * logn)
 	AdvancedVector			(unsigned n);
 	AdvancedVector			(unsigned n, T&&);
 
-	~AdvancedVector			();
 	AdvancedVector			(AdvancedVector&);
 	AdvancedVector			(AdvancedVector&&);
 	AdvancedVector			(std::vector< T >&);
-
+	
+	// Default destructor
+	~AdvancedVector			();
+	
+	// Size of vector, O(1)
 	unsigned 	size		() const;
+	
+	// Exchange content, O(1)!!!
 	void 		swap		(AdvancedVector< T >&);
 
+	// Push element to front or back, O(log n)
 	void 		push_back	(T&&);
 	void		push_back	(const T&);
 
 	void		push_front	(T&&);
 	void		push_front	(const T&);
 
+	// Insert element into fixed position, O(log n)
 	void		insert		(unsigned index, T&&);
 	void		insert		(unsigned index, const T&);
+	// Insert vector into fixed position, O(log(m + n)) where m is size of subarray
 	void		insert		(unsigned index, const AdvancedVector< T >&);
 
+	// Cut subarray to the other vector, O(log n)
 	void	subarray_cut	(unsigned from, unsigned to, AdvancedVector< T >&);
+	
+	// Cut subarray to the other vector, O(m + (log n)) where m is size of subarray
 	void	subarray_copy	(unsigned from, unsigned to, AdvancedVector< T >&);
 
+	// Erase element or range from array, O(log n)
 	void		erase		(unsigned index);
 	void		erase		(unsigned from, unsigned to);
 
+	// Clear array, O(n * (log n))
 	void		clear		();
 	
+	// Split array and move right part to the other array, O(log n)
 	void		split		(AdvancedVector&, unsigned index);
 
+	// Reference to some element, O(log n)
 	T& 			operator [] 	(unsigned index);
+	
+	// Concatenate two arrays, O(log(m + n))
 	void 		operator += 	(AdvancedVector&);
-
+	
+	// ~push_back
 	void		operator += 	(T&&);
 	void		operator += 	(const T&);
 	
