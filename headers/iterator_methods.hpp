@@ -25,11 +25,13 @@ AdvancedVector< T >::iterator::iterator (AdvancedVector< T >* parent_arg, unsign
 template< typename T >
 typename AdvancedVector< T >::iterator&  AdvancedVector< T >::iterator::operator++() {
 	index++;
+	return *this;
 }
 
 template< typename T >
 typename AdvancedVector< T >::iterator& AdvancedVector< T >::iterator::operator--() {
 	index--;
+	return *this;
 }
 
 template< typename T >

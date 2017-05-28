@@ -127,7 +127,7 @@ template< typename T >
 void AdvancedVector< T >::insert (unsigned index, T&& value) {
     if (index > size())
 		throw std::range_error("index must not be greater then size");
-
+	
     __node_namespace::_ImplicitNode< T >::Insert(head, index, value, mt());
 }
 
@@ -135,9 +135,8 @@ template< typename T >
 void AdvancedVector< T >::insert (unsigned index, const T& value) {
     if (index > size())
 		throw std::range_error("index must not be greater then size");
-	index += 1;
-
-    __node_namespace::_ImplicitNode< T >::Insert(head, index, value, mt());
+	
+    head = __node_namespace::_ImplicitNode< T >::Insert(head, index, value, mt());
 }
 
 template< typename T >
@@ -232,6 +231,18 @@ template< typename T >
 void AdvancedVector< T >::clear () {
 	__node_namespace::_ImplicitNode< T >::Destroy(head);
 	head = NULL;
+}
+
+template< typename T >
+void AdvancedVector< T >::operator = (AdvancedVector& other) {
+	clear();
+	head = __node_namespace::_ImplicitNode< T >::Copy(other.head);
+}
+
+template< typename T >
+void AdvancedVector< T >::operator = (AdvancedVector&& other) {
+	clear();
+	head = __node_namespace::_ImplicitNode< T >::Copy(other.head);
 }
 
 ////////////////////////////////////////////////////////////////////

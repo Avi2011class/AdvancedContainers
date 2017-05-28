@@ -32,6 +32,10 @@ public:
 	AdvancedVector			(AdvancedVector&&);
 	AdvancedVector			(std::vector< T >&);
 	
+	// Operator = O(n * logn)
+	void		operator = 	(AdvancedVector& other);
+	void		operator = 	(AdvancedVector&& other);
+	
 	// Default destructor
 	~AdvancedVector			();
 	
