@@ -61,9 +61,10 @@ TEST(ADVANCED_VECTOR, INSERT_ONE) {
 	AdvancedVector< int > A;
 	for (int i = 1; i < 10; i++) 
 		A.insert( 0, i );
-	for (int i = 0; i < 10; i++) 
-		A.insert( A.size(), -i-1 );
+	for (int i = 1; i < 10; i++) 
+		A.insert( A.size(), -i );
 	A.insert( 9, 0 );
+    
 	for (int i = 0; i < (int)A.size(); i++)
 		ASSERT_EQ( A[i], 9 - i );
 }
@@ -73,5 +74,37 @@ TEST(ADVANCED_VECTOR, INSERT_GROUP) {
 	AdvancedVector< int > B(3, 3);
 }*/
 // TODO add tests
+
+
+TEST(FENWICK_TREE, INIT) {
+    FenwickTree< int > tree(15);
+    for ( int i = 0; i < 15; i++ )
+        ASSERT_EQ( tree[i], 0 );
+    for ( int i = 15; i < 20; i++ )
+        ASSERT_ANY_THROW( tree[i] );
+    
+    std::vector< int > array = {0,1,2,3,4,5,6,7,8,9};
+    tree = FenwickTree< int >(array);
+    for ( int i = 0; i < 10; i++ )
+        ASSERT_EQ( tree[i], i );
+    for ( int i = 15; i < 20; i++ )
+        ASSERT_ANY_THROW( tree[i] );
+    ASSERT_ANY_THROW( tree[-1] );
+    
+}
+
 #endif
+
+
+
+
+
+
+
+
+
+
+
+
+
 

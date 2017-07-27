@@ -3,6 +3,7 @@
 
 #include "advanced_vector.hpp"
 
+
 template< typename T >
 AdvancedVector< T >::AdvancedVector () : head(NULL) {
 	std::random_device rd;

@@ -13,19 +13,31 @@
 */
 
 template<typename T>
-class FenwickTree
+class FenwickTree : private std::vector< T >
 {
 private:
-    std::vector< T > data;
-    size_t size;
-	T sum(int right) const;
+	T              _prefix_sum  ( int right ) const;
 	
 public:
-    FenwickTree								( size_t size );
-    FenwickTree(const std::vector< T >&);
-    void inc(int index, T delta);
-    T sum(int left, int right);
+    // zero initialization
+    FenwickTree				( size_t size );
+    // initialization from vector
+    FenwickTree             ( const std::vector< T >& );
+    // increment some element
+    void            inc     ( int index, const T& delta );
+    void            inc     ( int index, T&& delta );
+    // sum of subarray
+    T               sum     ( int left, int right ) const;
+    // return element of array
+    T               operator [] ( size_t index ) const;
+    // set the value of element
+    void            set     ( size_t index, const T& value );
+    void            set     ( size_t index, T&& value );
 };
+
+/* Префиксное дерево: структура данных, реализованная поверх дерева Фенвика, позволяющая выполнять
+ * 
+ * 
 
 template< typename T >
 class PrefixTree
@@ -47,5 +59,7 @@ public:
     }
 };
 
+*/
 
+#include "fenwick_tree_methods.hpp"
 #endif
